@@ -5,19 +5,22 @@ import lejos.nxt.SensorPort;
 
 public class LightTesting {
 	
-  static LightSensor light;
+	  static LightSensor left;
+	  static LightSensor right;
 
   public static void main(String[] args) throws Exception {
-	  light = new LightSensor(SensorPort.S2);
+	  left = new LightSensor(SensorPort.S2);
+	  right = new LightSensor(SensorPort.S3);
 	  while(true)
 	  {
 		  Button.waitForAnyPress();
-		  testSensor(light);
+		  testSensor(left,right);
 	  }
   }
   
-    private static void testSensor(LightSensor light){
-        LCD.drawInt(light.getNormalizedLightValue(), 4, 0, 1);
+    private static void testSensor(LightSensor left, LightSensor right){
+    	System.out.println("Left: " + left.getNormalizedLightValue());
+    	System.out.println("Right: " + right.getNormalizedLightValue());
     }
     
 }

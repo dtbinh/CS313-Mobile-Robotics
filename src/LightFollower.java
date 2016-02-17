@@ -1,5 +1,4 @@
 import lejos.nxt.*;
-import lejos.robotics.navigation.DifferentialPilot;
 
 // Moves away from light, despite the name
 public class LightFollower {
@@ -10,7 +9,6 @@ public class LightFollower {
 	  public static void main(String[] args) throws Exception {
 		  lightLeft = new LightSensor(SensorPort.S2);
 		  lightRight = new LightSensor(SensorPort.S3);
-		  DifferentialPilot pilot = new DifferentialPilot(56, 26, Motor.A, Motor.B);
 
 		  while (true) {
 			  int leftVal = lightLeft.getNormalizedLightValue();

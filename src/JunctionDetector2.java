@@ -3,7 +3,9 @@ import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.subsumption.Behavior;
 
 public class JunctionDetector2 implements Behavior {
-	   
+	
+		private RobotState state;
+	
 	   private DifferentialPilot pilot;
 	   private LightSensor leftSensor;
 	   private LightSensor rightSensor;
@@ -39,17 +41,10 @@ public class JunctionDetector2 implements Behavior {
 	   
 	   public boolean takeControl() {
 		   
-	      // takes Control when sensors differ more than a threshold
-		  int leftVal = leftSensor.getNormalizedLightValue();
-		  int rightVal = rightSensor.getNormalizedLightValue();
-		  
-		  if (Math.abs(leftVal - rightVal) > REL_DARK_TRESHOLD 
-				  || (isLeftBlack() && isRightBlack())) {
-			  //System.out.println("Take control");
+		  if (isLeftBlack() || isRightBlack()) {
 			  return true;
 		  }
 		  
-
 		  return false;
 	   }
 
@@ -70,7 +65,7 @@ public class JunctionDetector2 implements Behavior {
 		 int rightVal = rightSensor.getNormalizedLightValue();
 		 
 		 while (takeControl()) {
-			if (isLeftBlack() && isRightBlack()) { // Both black
+			if (isLeftBlack() && isRightBlack()) {
 				System.out.println("T junction or Cross");
 				pilot.travel(75);
 

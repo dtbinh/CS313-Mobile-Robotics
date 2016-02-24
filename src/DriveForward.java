@@ -22,8 +22,8 @@ class DriveForward implements Behavior {
 	     suppressed = false;
 
 	     while( !suppressed ) {
-	    	 pilot.travel(3);
-	    	 Thread.yield();
+	    	 pilot.travel(5);
+	    	 Thread.yield(); 
 	     }
 	   }
 	}
